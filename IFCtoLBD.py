@@ -24,7 +24,7 @@ def convertIFCSPFtoTTL(inputFile, outputFile):
 	#reading file - IfcSpfReader
     model = ios.open(inputFile)
 
-    f = open(outputFile, "w")
+    f = open(outputFile, "w", encoding='utf-8')
     writeTTLFileContent(model,f)    
     f.close()
     
@@ -223,7 +223,9 @@ def writeElements(model,f):
         if(b.Name):
             output += "\trdfs:label \""+b.Name+"\"^^xsd:string ;" + "\n"
         if(b.Description):
-            output += "\trdfs:comment \""+b.Description+"\"^^xsd:string ;" + "\n"        
+            output += "\trdfs:comment \""+b.Description+"\"^^xsd:string ;" + "\n"
+	if(b.Tag):
+            output += "\tprops:hasTag \""+b.Tag+"\"^^xsd:string ;" + "\n"
         output += "\tbot:hasGuid \""+ ios.guid.expand(b.GlobalId) +"\"^^xsd:string ;" + "\n"
         output += "\tprops:hasCompressedGuid \""+ b.GlobalId +"\"^^xsd:string "
 
