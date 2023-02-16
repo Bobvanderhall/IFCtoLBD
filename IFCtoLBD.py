@@ -64,8 +64,7 @@ def print_properties(properties, output):
 
 def cleanString(name):
     name = ''.join(x for x in name.title() if not x.isspace())
-    name = name.replace('\\', '')
-    name = name.replace('/', '')
+    name = name.replace('\\', '').replace('/', '').replace('(', '').replace(')', '').replace('.', '').replace(',', '').replace('*', '').replace('°', '').replace('©', '').replace('™', '').replace('#', '')
     return name
 
 
